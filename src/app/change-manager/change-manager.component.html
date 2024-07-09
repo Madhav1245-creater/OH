@@ -1,0 +1,21 @@
+<div class="p-3" style="width: 500px">
+  <form [formGroup]="changeForm" (ngSubmit)="onChange(changeForm.value.email)">
+    <div class="form-group">
+      <label for="email">Manager email</label>
+      <select
+        name="email"
+        id="email"
+        class="form-select"
+        formControlName="email"
+      >
+        <option [value]="email" *ngFor="let email of mails">{{ email }}</option>
+      </select>
+    </div>
+    <div class="mt-4">
+      <button class="btn btn-danger me-1" type="button" (click)="onClose()">
+        Close
+      </button>
+      <button class="btn btn-success" type="submit">Change</button>
+    </div>
+  </form>
+</div>

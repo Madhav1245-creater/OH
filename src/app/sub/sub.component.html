@@ -1,0 +1,59 @@
+<div *ngFor="let subs of noOfSub; let i = index">
+  <div class="d-flex justify-content-center">
+    <mat-divider class="mx-5" style="width: 80.4%"></mat-divider>
+  </div>
+  <div class="d-flex justify-content-between flex-wrap">
+    <div *ngFor="let id of subs">
+      <div class="d-flex justify-content-center">
+        <div class="vr" style="height: 50px"></div>
+      </div>
+      <div
+        class="card"
+        style="max-width: 450px"
+        [ngClass]="{
+          'active-card': clicked.includes(id),
+        }"
+        (click)="displaySub(sub[id - 1].subordinates, i)"
+      >
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img
+              [src]="sub[id - 1].imageUrl"
+              style="width: 250px; height: 206px"
+              class="img-fluid rounded-start img-responsive"
+              alt="subordinate image"
+            />
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h4 class="card-title">{{ sub[id - 1].name }}</h4>
+              <p class="card-text">
+                Designation : {{ sub[id - 1].designation }}
+              </p>
+              <p class="card-text">Email : {{ sub[id - 1].email }}</p>
+              <p class="card-text">
+                Subordinates : {{ sub[id - 1].subordinates?.length }}
+              </p>
+              <button class="btn btn-primary" (click)="onAdd(sub[id - 1])">
+                Add
+              </button>
+              <button
+                *ngIf="sub[id - 1].subordinates === null"
+                class="btn btn-danger ms-1"
+                (click)="onDelete(sub[id - 1].id)"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-center">
+        <div
+          [ngClass]="{ vr: clicked.includes(id) }"
+          style="height: 50px"
+        ></div>
+      </div>
+    </div>
+  </div>
+</div>
